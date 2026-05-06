@@ -49,6 +49,9 @@ final class SubscriptionPurchaseLineItemTest extends TestCase
             'signupPromotion' => [
                 'oneTimeCode' => [],
             ],
+            'offerPhase' => [
+                'freeTrial' => [],
+            ],
         ];
 
         $actual = $this->normalizer->normalize($data, SubscriptionPurchaseLineItem::class);
@@ -113,6 +116,8 @@ final class SubscriptionPurchaseLineItemTest extends TestCase
             $actual->autoRenewingPlan->installmentDetails->remainingCommittedPaymentsCount
         );
         $this->assertNotNull($actual->autoRenewingPlan->installmentDetails->pendingCancellation);
+        $this->assertNotNull($actual->offerPhase);
+        $this->assertNotNull($actual->offerPhase->freeTrial);
     }
 
     #[Test]
